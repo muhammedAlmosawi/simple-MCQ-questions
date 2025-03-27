@@ -1,0 +1,92 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Navigation */
+nav {
+    background-color: #444;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: #ffcc00;
+}
+
+/* Main Content */
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #444;
+    margin-top: 20px;
+}
+
+.lesson {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+button.option {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background: #ddd;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button.option:hover {
+    background: #ccc;
+    transform: scale(1.05);
+}
+
+/* Answer States */
+button.option.correct {
+    background: #4CAF50 !important; /* Green */
+    color: white;
+}
+
+button.option.wrong {
+    background: #FF4444 !important; /* Red */
+    color: white;
+}
+
+button.option.correct-answer {
+    background: orange !important; /* Correct answer highlight */
+    color: white;
+}
