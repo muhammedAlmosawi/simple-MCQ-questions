@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     const quizContainer = document.getElementById("quiz-container");
+    const currentScoreElement = document.getElementById("current-score");
+    const questionsRemainingElement = document.getElementById("questions-remaining");
+    
+    let totalQuestions = 0;
+    let answeredQuestions = 0;
+    let score = 0;
 
     // Questions for each lesson
     const questions = {
@@ -8,6 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 question: "What is 2 + 2?",
                 options: ["3", "4", "5"],
                 correct: "4"
+            },
+            {
+                question: "Solve for x: 3x = 12",
+                options: ["2", "4", "6"],
+                correct: "4"
             }
         ],
         "lesson-math-2": [
@@ -15,6 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 question: "How many sides does a triangle have?",
                 options: ["2", "3", "4"],
                 correct: "3"
+            },
+            {
+                question: "What is the sum of interior angles in a quadrilateral?",
+                options: ["180°", "360°", "540°"],
+                correct: "360°"
             }
         ],
         "lesson-science-1": [
@@ -22,20 +38,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 question: "What force pulls objects down to Earth?",
                 options: ["Friction", "Gravity", "Magnetism"],
                 correct: "Gravity"
+            },
+            {
+                question: "What is the SI unit of force?",
+                options: ["Watt", "Newton", "Joule"],
+                correct: "Newton"
             }
         ]
     };
 
     // Function to display questions
     function displayQuestions(lesson) {
-        quizContainer.innerHTML = ""; // Clear previous questions
-        quizContainer.style.display = "block"; // Show the container
+        quizContainer.innerHTML = "";
+        quizContainer.style.display = "block";
+        score = 0;
+        answeredQuestions = 0;
+        currentScoreElement.textContent = `Score: ${score}`;
 
         if (questions[lesson]) {
-            questions[lesson].forEach(q => {
+            totalQuestions = questions[lesson].length;
+            questionsRemainingElement.textContent = `Questions: ${answeredQuestions}/${totalQuestions}`;
+            
+            questions[lesson].forEach((q, index) => {
                 const questionDiv = document.createElement("div");
                 questionDiv.classList.add("question");
-                questionDiv.innerHTML = `<p>${q.question}</p>`;
+                questionDiv.innerHTML = `<p>Question ${index + 1}: ${q.question}</p>`;
 
                 q.options.forEach(option => {
                     const btn = document.createElement("button");
@@ -55,22 +82,30 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to check the answer
     function checkAnswer(button, correctAnswer, questionDiv) {
         const buttons = questionDiv.querySelectorAll(".option");
-
-        // Disable all buttons after selection
         buttons.forEach(btn => btn.disabled = true);
 
         if (button.textContent === correctAnswer) {
-            button.classList.add("correct"); // Correct: Green
+            button.classList.add("correct");
+            score++;
+            answeredQuestions++;
         } else {
-            button.classList.add("wrong"); // Wrong: Red
-
-            // Highlight the correct answer in orange
+            button.classList.add("wrong");
+            answeredQuestions++;
             buttons.forEach(btn => {
                 if (btn.textContent === correctAnswer) {
                     btn.classList.add("correct-answer");
                 }
             });
         }
+
+        currentScoreElement.textContent = `Score: ${score}`;
+        questionsRemainingElement.textContent = `Questions: ${answeredQuestions}/${totalQuestions}`;
+        
+        // Add progress animation
+        currentScoreElement.style.transform = "scale(1.1)";
+        setTimeout(() => {
+            currentScoreElement.style.transform = "scale(1)";
+        }, 200);
     }
 
     // Event listeners for lesson selection
