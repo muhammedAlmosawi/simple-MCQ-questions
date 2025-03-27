@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     btn.classList.add("option");
                     btn.textContent = option;
                     btn.addEventListener("click", function () {
-                        checkAnswer(btn, q.correct);
+                        checkAnswer(btn, q.correct, questionDiv);
                     });
                     questionDiv.appendChild(btn);
                 });
@@ -53,20 +53,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Function to check the answer
-    function checkAnswer(button, correctAnswer) {
-        const buttons = button.parentElement.querySelectorAll(".option");
+    function checkAnswer(button, correctAnswer, questionDiv) {
+        const buttons = questionDiv.querySelectorAll(".option");
 
-        buttons.forEach(btn => {
-            btn.disabled = true; // Disable all buttons after selection
-            if (btn.textContent === correctAnswer) {
-                btn.classList.add("correct-answer"); // Highlight correct answer
-            }
-        });
+        // Disable all buttons after selection
+        buttons.forEach(btn => btn.disabled = true);
 
         if (button.textContent === correctAnswer) {
-            button.classList.add("correct");
+            button.classList.add("correct"); // Correct: Green
         } else {
-            button.classList.add("wrong");
+            button.classList.add("wrong"); // Wrong: Red
+
+            // Highlight the correct answer in orange
+            buttons.forEach(btn => {
+                if (btn.textContent === correctAnswer) {
+                    btn.classList.add("correct-answer");
+                }
+            });
         }
     }
 

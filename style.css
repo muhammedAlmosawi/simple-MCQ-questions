@@ -80,6 +80,7 @@ nav a:hover {
     margin-bottom: 20px;
 }
 
+/* Answer Buttons */
 .option {
     display: block;
     width: 100%;
@@ -89,20 +90,21 @@ nav a:hover {
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 /* Answer Feedback */
 .correct {
-    background-color: #4CAF50;
+    background-color: #4CAF50 !important; /* Green for correct */
     color: white;
 }
 
 .wrong {
-    background-color: #FF6347;
+    background-color: #FF6347 !important; /* Red for incorrect */
     color: white;
 }
 
 .correct-answer {
-    background-color: orange;
+    background-color: orange !important; /* Orange for the correct answer */
     color: white;
 }
