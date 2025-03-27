@@ -1,21 +1,20 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    text-align: center;
+    background-color: #f5f5f5;
 }
 
-/* Navigation */
+/* Navigation Bar */
 nav {
-    background-color: #444;
+    background-color: #333;
     padding: 1rem;
 }
 
 nav ul {
     list-style: none;
+    margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
@@ -26,67 +25,84 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    font-size: 18px;
+    padding: 0.5rem;
 }
 
 nav a:hover {
-    color: #ffcc00;
+    background-color: #444;
 }
 
-/* Main Content */
-main {
-    max-width: 800px;
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+}
+
+.dropdown-menu a {
+    color: black;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #ddd;
+}
+
+/* Quiz Container */
+#quiz-container {
+    max-width: 600px;
     margin: 2rem auto;
     padding: 1rem;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    color: #444;
-    margin-top: 20px;
-}
-
-.lesson {
-    background: #fff;
-    padding: 20px;
-    margin: 20px auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
 }
 
-/* Buttons */
-button.option {
+/* Question Styling */
+.question {
+    margin-bottom: 20px;
+}
+
+.option {
     display: block;
-    width: 80%;
-    margin: 10px auto;
-    padding: 12px;
-    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
     border: none;
     cursor: pointer;
-    background: #ddd;
-    border-radius: 6px;
-    transition: background 0.3s, transform 0.2s;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-button.option:hover {
-    background: #ccc;
-    transform: scale(1.05);
-}
-
-/* Answer States */
-button.option.correct {
-    background: #4CAF50 !important; /* Green */
+/* Answer Feedback */
+.correct {
+    background-color: #4CAF50;
     color: white;
 }
 
-button.option.wrong {
-    background: #FF4444 !important; /* Red */
+.wrong {
+    background-color: #FF6347;
     color: white;
 }
 
-button.option.correct-answer {
-    background: orange !important; /* Correct answer highlight */
+.correct-answer {
+    background-color: orange;
     color: white;
 }

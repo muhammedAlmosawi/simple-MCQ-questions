@@ -8,55 +8,29 @@
 </head>
 <body>
 
+    <!-- Navigation Bar -->
     <nav>
         <ul>
-            <li><a href="#math">Math</a></li>
-            <li><a href="#science">Science</a></li>
+            <li class="dropdown">
+                <a href="#">Math ▼</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" class="lesson-link" data-lesson="lesson-math-1">Lesson 1: Algebra</a></li>
+                    <li><a href="#" class="lesson-link" data-lesson="lesson-math-2">Lesson 2: Geometry</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Science ▼</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" class="lesson-link" data-lesson="lesson-science-1">Lesson 1: Physics</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 
     <main>
-        <!-- Math Section -->
-        <section id="math">
-            <h2>Math</h2>
-
-            <div class="lesson">
-                <h3>Lesson 1: Algebra</h3>
-                <div class="question">
-                    <p>What is 2 + 2?</p>
-                    <button class="option" data-answer="4">3</button>
-                    <button class="option" data-answer="4">4</button>
-                    <button class="option" data-answer="4">5</button>
-                </div>
-            </div>
-
-            <div class="lesson">
-                <h3>Lesson 2: Geometry</h3>
-                <div class="question">
-                    <p>How many sides does a triangle have?</p>
-                    <button class="option" data-answer="3">2</button>
-                    <button class="option" data-answer="3">3</button>
-                    <button class="option" data-answer="3">4</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Science Section -->
-        <section id="science">
-            <h2>Science</h2>
-
-            <div class="lesson">
-                <h3>Lesson 1: Physics</h3>
-                <div class="question">
-                    <p>What force pulls objects down to Earth?</p>
-                    <button class="option" data-answer="Gravity">Friction</button>
-                    <button class="option" data-answer="Gravity">Gravity</button>
-                    <button class="option" data-answer="Gravity">Magnetism</button>
-                </div>
-            </div>
-
-        </section>
-
+        <div id="quiz-container">
+            <!-- Questions will be displayed here dynamically -->
+        </div>
     </main>
 
     <script src="script.js"></script>

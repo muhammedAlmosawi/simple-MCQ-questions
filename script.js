@@ -1,28 +1,81 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Select all answer buttons
-    const buttons = document.querySelectorAll(".option");
+    const quizContainer = document.getElementById("quiz-container");
 
-    buttons.forEach(button => {
-        button.addEventListener("click", function () {
-            let selectedText = this.innerText.trim(); // Get text and remove spaces
-            let correctAnswer = this.getAttribute("data-answer").trim(); // Get correct answer
-
-            let parentDiv = this.parentElement;
-            let allButtons = parentDiv.querySelectorAll(".option");
-
-            // Disable all buttons after answering
-            allButtons.forEach(btn => btn.disabled = true);
-
-            if (selectedText === correctAnswer) {
-                this.classList.add("correct"); // Green if correct
-            } else {
-                this.classList.add("wrong"); // Red if incorrect
-                allButtons.forEach(btn => {
-                    if (btn.innerText.trim() === correctAnswer) {
-                        btn.classList.add("correct-answer"); // Highlight correct answer
-                    }
-                });
+    // Questions for each lesson
+    const questions = {
+        "lesson-math-1": [
+            {
+                question: "What is 2 + 2?",
+                options: ["3", "4", "5"],
+                correct: "4"
             }
+        ],
+        "lesson-math-2": [
+            {
+                question: "How many sides does a triangle have?",
+                options: ["2", "3", "4"],
+                correct: "3"
+            }
+        ],
+        "lesson-science-1": [
+            {
+                question: "What force pulls objects down to Earth?",
+                options: ["Friction", "Gravity", "Magnetism"],
+                correct: "Gravity"
+            }
+        ]
+    };
+
+    // Function to display questions
+    function displayQuestions(lesson) {
+        quizContainer.innerHTML = ""; // Clear previous questions
+        quizContainer.style.display = "block"; // Show the container
+
+        if (questions[lesson]) {
+            questions[lesson].forEach(q => {
+                const questionDiv = document.createElement("div");
+                questionDiv.classList.add("question");
+                questionDiv.innerHTML = `<p>${q.question}</p>`;
+
+                q.options.forEach(option => {
+                    const btn = document.createElement("button");
+                    btn.classList.add("option");
+                    btn.textContent = option;
+                    btn.addEventListener("click", function () {
+                        checkAnswer(btn, q.correct);
+                    });
+                    questionDiv.appendChild(btn);
+                });
+
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+    }
+
+    // Function to check the answer
+    function checkAnswer(button, correctAnswer) {
+        const buttons = button.parentElement.querySelectorAll(".option");
+
+        buttons.forEach(btn => {
+            btn.disabled = true; // Disable all buttons after selection
+            if (btn.textContent === correctAnswer) {
+                btn.classList.add("correct-answer"); // Highlight correct answer
+            }
+        });
+
+        if (button.textContent === correctAnswer) {
+            button.classList.add("correct");
+        } else {
+            button.classList.add("wrong");
+        }
+    }
+
+    // Event listeners for lesson selection
+    document.querySelectorAll(".lesson-link").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const lessonId = this.getAttribute("data-lesson");
+            displayQuestions(lessonId);
         });
     });
 });
